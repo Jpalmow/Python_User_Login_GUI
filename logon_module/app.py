@@ -22,7 +22,7 @@ def main_menu():
     
 def new_user():
     
-    global username, username_entry, password, password_entry, fullname, fullname_entry
+    global username, username_entry, password, password_entry, fullname, fullname_entry, new_user_window
     
     new_user_window = Toplevel(main_window)
     new_user_window.title("Sign in as new user")
@@ -68,6 +68,8 @@ def new_user():
     
 def register():
     
+    registered = False
+    
     #taking informations from the boxes
     username_text = username.get()
     password_text = password.get()
@@ -75,12 +77,26 @@ def register():
     
     #Inserting a new "record" in the credential file
     file = open("Credentials.txt", "a")
-    file.write("Username: " + username_text + " " + "Password: " + password_text + " " + "Fullname: " + fullname_text + "\n")
-    file.close()
     
-    #clearing the fields
-    username_entry.delete(0, END)
-    password_entry.delete(0, END)
-    fullname_entry.delete(0, END)
+    #FOR loop to read records in file and condition statement to check IF user exist in file
+    for line in open("Credentials.txt", "r").readlines():  
+        login_info = line.split()
+        if username_text == login_info[1]:
+            registered = True
+    if registered:
+        file.close()
+        username_entry.delete(0, END)
+        password_entry.delete(0, END)
+        fullname_entry.delete(0, END)
 
+    else:
+        #inserting values into credentials file
+        file.write("Username: " + username_text + " " + "Password: " + password_text + " " + "Fullname: " + fullname_text + "\n")
+        file.close()
+        
+        #clearing the fields
+        username_entry.delete(0, END)
+        password_entry.delete(0, END)
+        fullname_entry.delete(0, END)
+   
 main_menu()
