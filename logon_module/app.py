@@ -22,6 +22,8 @@ def main_menu():
     
 def new_user():
     
+    global username, username_entry, password, password_entry, fullname, fullname_entry
+    
     new_user_window = Toplevel(main_window)
     new_user_window.title("Sign in as new user")
     new_user_window.geometry("300x250")
@@ -61,7 +63,24 @@ def new_user():
     fullname_entry.grid(row=4, column=1)
 
 
-    register_btn = Button(new_user_window, text="Register")
+    register_btn = Button(new_user_window, text="Register", command=register)
     register_btn.pack()
+    
+def register():
+    
+    #taking informations from the boxes
+    username_text = username.get()
+    password_text = password.get()
+    fullname_text = fullname.get()
+    
+    #Inserting a new "record" in the credential file
+    file = open("Credentials.txt", "a")
+    file.write("Username: " + username_text + " " + "Password: " + password_text + " " + "Fullname: " + fullname_text + "\n")
+    file.close()
+    
+    #clearing the fields
+    username_entry.delete(0, END)
+    password_entry.delete(0, END)
+    fullname_entry.delete(0, END)
 
 main_menu()
