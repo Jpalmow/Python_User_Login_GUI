@@ -88,6 +88,13 @@ def register():
         username_entry.delete(0, END)
         password_entry.delete(0, END)
         fullname_entry.delete(0, END)
+        
+        user_exist_window = Toplevel(new_user_window)
+        user_exist_window.geometry("200x200")
+        user_exist_window.title("Warrning!")
+        Label(user_exist_window, text="User already exist!!!", bg="black", fg="red").pack(fill=X, pady=20)
+        ok_btn = Button(user_exist_window, text="OK", width="20", command=lambda :user_exist_window.destroy())
+        ok_btn.pack(pady=20)
 
     else:
         #inserting values into credentials file
@@ -98,5 +105,11 @@ def register():
         username_entry.delete(0, END)
         password_entry.delete(0, END)
         fullname_entry.delete(0, END)
-   
+        
+        successful_register_window = Toplevel(new_user_window)
+        successful_register_window.geometry("200x200")
+        successful_register_window.title("Success!")
+        Label(successful_register_window, text="User registered successfully!", bg="gray", fg="green").pack(fill=X, pady=20)
+        ok_btn = Button(successful_register_window, text="OK", width="20", command=lambda :successful_register_window.destroy())
+        ok_btn.pack(pady=20)
 main_menu()
