@@ -15,7 +15,7 @@ def main_menu():
     #button placement
     login_btn.pack(pady=20)
 
-    register_btn = Button(main_window, text="Sign up", width="30", height="2"  command=new_user)
+    register_btn = Button(main_window, text="Sign up", width="30", height="2"  command=new_user()
     register_btn.pack(pady=20)
 
     main_window.mainloop()
