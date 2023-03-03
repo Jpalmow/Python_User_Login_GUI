@@ -19,6 +19,26 @@ def main_menu():
     register_btn.pack(pady=20)
 
     main_window.mainloop()
+
+def login():
+
+    login_window = Toplevel(main_window)
+    login_window.title("Login")
+    login_window.geometry("300x300")
+
+    label2 = Label(new_user_window, text="Please enter the credentials", bg="gray", fg="blue")
+    label2.pack(fill=X, pady=20)
+
+    credentials_panel = Frame(login_window)
+    credentials_panel.pack(pady=20)
+
+    username_verify = StringVar()
+    password_verify = StringVar()
+
+    username_label = Label(credentials_panel, text="Username: ")
+    username_label.grid(row=0, column=0)
+    username_verify_entry = Entry(credentials_panel, textvariable=username_verify)
+    username_verify_entry.grid(row=0, column=1)
     
 def new_user():
     
