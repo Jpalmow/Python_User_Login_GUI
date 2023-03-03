@@ -22,6 +22,9 @@ def main_menu():
 
 def login():
 
+
+    global username_verify, username_verify_entry, password_verify, password_verify_entry, login_window
+
     login_window = Toplevel(main_window)
     login_window.title("Login")
     login_window.geometry("300x300")
@@ -40,6 +43,41 @@ def login():
     username_verify_entry = Entry(credentials_panel, textvariable=username_verify)
     username_verify_entry.grid(row=0, column=1)
     
+    Label(credentials_panel, text="").grid(row=1)
+
+    password_label = Label(credentials_panel, text="Password: ")
+    password_label.grid(row=2, column=0)
+    password_verify_entry = Entry(credentials_panel, textvariable=password_verify)
+    password_verify_entry.grid(row=2, column=1)
+
+    login_btn = Button(login_window, text="Log in", command=login_verify)
+    login_btn.pack(pady=20)
+
+def login_verify()
+    
+    user = username_verify.get()
+    passwd = password_verify.get()
+
+    login = False
+
+    for line in open("credentials.txt", "r").readlines():
+        login_info = line.split()
+        if user == login_info[1] and passwd == login_info[3]:
+            login = True
+
+    if login:
+        Label1 = Label(login_window, text="Verification successful", fg="green")
+        Label.pack()
+    else:
+        failed_login_window = Toplevel(login_window)
+        failed_login_window.geometry("200x200")
+        failed_login_window.title("Warning")
+
+        Label(failed_login_window, text="Login or Password incorrect", bg="gray", fg="red").pack(fill=X, pady=20)
+        ok_btn = Button(failed_login_window, text="OK", width="20", command=lambda :failed_login_window.destroy())
+        ok_btn.pack(pady=20)
+
+
 def new_user():
     
     global username, username_entry, password, password_entry, fullname, fullname_entry, new_user_window
@@ -111,7 +149,7 @@ def register():
         
         user_exist_window = Toplevel(new_user_window)
         user_exist_window.geometry("200x200")
-        user_exist_window.title("Warrning!")
+        user_exist_window.title("Warning!")
         Label(user_exist_window, text="User already exist!!!", bg="black", fg="red").pack(fill=X, pady=20)
         ok_btn = Button(user_exist_window, text="OK", width="20", command=lambda :user_exist_window.destroy())
         ok_btn.pack(pady=20)
