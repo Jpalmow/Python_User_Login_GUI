@@ -15,7 +15,7 @@ def main_menu():
     #button placement
     login_btn.pack(pady=20)
 
-    register_btn = Button(main_window, text="Sign up", width="30", height="2"  command=new_user()
+    register_btn = Button(main_window, text="Sign up", width="30", height="2",  command=new_user())
     register_btn.pack(pady=20)
 
     main_window.mainloop()
@@ -53,7 +53,7 @@ def login():
     login_btn = Button(login_window, text="Log in", command=login_verify)
     login_btn.pack(pady=20)
 
-def login_verify()
+def login_verify():
     
     user = username_verify.get()
     passwd = password_verify.get()
@@ -170,4 +170,6 @@ def register():
         Label(successful_register_window, text="User registered successfully!", bg="gray", fg="green").pack(fill=X, pady=20)
         ok_btn = Button(successful_register_window, text="OK", width="20", command=lambda :successful_register_window.destroy())
         ok_btn.pack(pady=20)
+
+
 main_menu()
